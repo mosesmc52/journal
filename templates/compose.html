@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Compose{% endblock %}
+
+{% block extra-styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "lib/summernote/summernote.css" %} " />
+{% endblock %}
+
+{% block page-content %}
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form action="/compose/" method="POST" >
+          {% csrf_token %}
+          <div class="form-group">
+            <div class="panel-heading"><h2>{{ question.question }}</h2></div>
+
+
+
+            <div class="col-sm-12">
+
+              {% for field in form %}
+                <div class="form-group">
+                {{ field }}
+                </div>
+              {% endfor %}
+
+              <div class="col-xl-12 xs-pt-10">
+                  <button class="btn btn-success btn-block  btn-xl">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra-javascript %}
+
+{% endblock %}

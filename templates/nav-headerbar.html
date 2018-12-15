@@ -1,0 +1,25 @@
+{% load humanize %}
+
+<div class="page-head">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <h2>{{ today|date:'F t, Y' }}</h2>
+          {% if lastpost %}
+          <span class="panel-subtitle"><b>Last Post:</b> {{ lastpost|naturaltime }}</span>
+          {% endif %}
+        </div>
+        {% if user.is_authenticated %}
+        <div class="be-right-navbar">
+          <ul class="nav navbar-nav navbar-right be-user-nav">
+            <li class="dropdown"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><img data-name="{{ user.first_name|lower }}" class="profile"/></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="/"><span class="icon mdi mdi-power"></span>Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+      </div>
+</div>

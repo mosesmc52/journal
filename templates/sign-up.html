@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{% endblock %}
+
+{% block extra-styles %}
+
+{% endblock %}
+
+
+{%block page-container %}
+
+{% if form.errror %}
+<div role="alert" class="alert alert-danger alert-dismissible">
+  <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button><span class="icon mdi mdi-close-circle-o"></span><strong>Errror!</strong> {{ form.fieldname.errors.as_text }}
+</div>
+{% endif %}
+
+<div class="splash-container">
+  <div class="panel panel-default panel-border-color panel-border-color-primary">
+
+
+    <div class="panel-body">
+
+      <form action="/signup/" method="POST"><span class="splash-title xs-pb-20">Sign Up</span>
+        {% csrf_token %}
+
+        {% for field in form %}
+          <div class="form-group">
+          {{ field }}
+          </div>
+        {% endfor %}
+
+        <div class="form-group xs-pt-10">
+          <button type="submit" class="btn btn-block btn-primary btn-xl">Sign Up</button>
+        </div>
+        <div class="title"><span class="splash-title xs-pb-15">Or</span></div>
+        <div class="form-group row social-signup">
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-lg btn-block btn-social btn-facebook btn-color"><i class="mdi mdi-facebook icon icon-left"></i> Facebook</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra-javascript %}
+<script src="{% static "lib/parsley/parsley.min.js" %} " type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    //initialize the javascript
+    App.init();
+    $('form').parsley();
+  });
+</script>
+{% endblock %}
